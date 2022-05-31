@@ -41,7 +41,7 @@ client.join(null, "myChannel", null, (uid)=>{
 
   let localStream = AgoraRTC.createStream({
     audio: true,
-    video: false,
+    video: true,
 });
 // Initialize the local stream
 localStream.init(()=>{
