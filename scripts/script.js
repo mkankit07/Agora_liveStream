@@ -23,8 +23,11 @@ function removeVideoStream(elementId) {
     let remoteDiv = document.getElementById(elementId);
     if (remoteDiv) remoteDiv.parentNode.removeChild(remoteDiv);
 };
+
+
+
 let client = AgoraRTC.createClient({
-    mode: "rtc",
+    mode: "live",
     codec: "vp8",
 });
 
@@ -33,12 +36,12 @@ client.init("4b6d5d1e8d4148a68a57f56e9437d1bf", function() {
 }, function(err) {
     console.log("client init failed ", err);
 });
+
+
 // Join a channel
 client.join(null, "myChannel", null, (uid)=>{
-    // Create a local stream
-  }, handleError);
 
-      let localStream = AgoraRTC.createStream({
+let localStream = AgoraRTC.createStream({
     audio: true,
     video: true,
 });
@@ -47,8 +50,13 @@ localStream.init(()=>{
     // Play the local stream
     localStream.play("me");
     // Publish the local stream
+    console.log(localStream,"llllllllllllllllll");
     client.publish(localStream, handleError);
 }, handleError);
+    // Create a local stream
+  }, handleError);
+
+
 
 
 // Subscribe to the remote stream when it is published
