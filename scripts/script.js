@@ -36,6 +36,8 @@ client.init("4b6d5d1e8d4148a68a57f56e9437d1bf", function() {
 // Join a channel
 client.join(null, "myChannel", null, (uid)=>{
     // Create a local stream
+  }, handleError);
+
       let localStream = AgoraRTC.createStream({
     audio: true,
     video: true,
@@ -47,9 +49,6 @@ localStream.init(()=>{
     // Publish the local stream
     client.publish(localStream, handleError);
 }, handleError);
-  }, handleError);
-
-
 
 
 // Subscribe to the remote stream when it is published
